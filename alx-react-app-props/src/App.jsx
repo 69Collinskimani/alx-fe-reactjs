@@ -50,9 +50,12 @@ function App() {
             <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
             <UserProfile name="Bob" age="30" bio="Avid traveler and foodie" />
         </div>
-        <UserContext.Provider value={userData}>
-      <ProfilePage />
-    </UserContext.Provider>
+        <div>
+          <UserContext/>
+          <ProfilePage/>
+          <UserContext.Provider value={userData}></UserContext.Provider>
+        </div>
+       
 
     </>
   )
