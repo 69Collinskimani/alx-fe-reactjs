@@ -7,6 +7,8 @@ const RegistrationForm = () => {
     password: "",
   });
 
+  const { username, email, password } = formData; // Destructure values for easier access
+
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -16,9 +18,9 @@ const RegistrationForm = () => {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.username) newErrors.username = "Username is required.";
-    if (!formData.email) newErrors.email = "Email is required.";
-    if (!formData.password) newErrors.password = "Password is required.";
+    if (!username) newErrors.username = "Username is required.";
+    if (!email) newErrors.email = "Email is required.";
+    if (!password) newErrors.password = "Password is required.";
     return newErrors;
   };
 
@@ -40,7 +42,7 @@ const RegistrationForm = () => {
         <input
           type="text"
           name="username"
-          value={formData.username}
+          value={username} // Using destructured `username`
           onChange={handleChange}
         />
         {errors.username && <p>{errors.username}</p>}
@@ -50,7 +52,7 @@ const RegistrationForm = () => {
         <input
           type="email"
           name="email"
-          value={formData.email}
+          value={email} // Using destructured `email`
           onChange={handleChange}
         />
         {errors.email && <p>{errors.email}</p>}
@@ -60,7 +62,7 @@ const RegistrationForm = () => {
         <input
           type="password"
           name="password"
-          value={formData.password}
+          value={password} // Using destructured `password`
           onChange={handleChange}
         />
         {errors.password && <p>{errors.password}</p>}
