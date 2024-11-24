@@ -1,10 +1,10 @@
 const fs = require('fs');
+const path = require('path');
 
 const filesToCheck = [
-  'C:/Users/69Collinskimani/recipe-sharing-app/src/components/RecipeList.js',
-  'C:/Users/69Collinskimani/recipe-sharing-app/src/components/AddRecipeForm.js',
+  path.join(__dirname, 'src', 'components', 'RecipeList.js'),
+  path.join(__dirname, 'src', 'components', 'AddRecipeForm.js'),
 ];
-
 
 filesToCheck.forEach((file) => {
   if (fs.existsSync(file)) {
