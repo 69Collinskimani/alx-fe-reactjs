@@ -30,7 +30,7 @@ function App() {
       </div>
       <div>
       <h1>User Registration</h1>
-      <FormikForm />
+      <ormikForm />
     </div>
       <div>
       <h1>User Registration</h1>
