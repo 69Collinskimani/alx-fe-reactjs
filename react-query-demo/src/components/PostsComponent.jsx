@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 
-// Function to fetch data from the API
+// Fetch posts data from JSONPlaceholder API
 const fetchPosts = async () => {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts");
   if (!response.ok) {
@@ -11,21 +11,44 @@ const fetchPosts = async () => {
 };
 
 const PostsComponent = () => {
-  const { data, error, isLoading, isError, isFetching, refetch } = useQuery(
-    "posts", // unique key for this query
-    fetchPosts,
-    { staleTime: 5 * 60 * 1000 } // Data is considered fresh for 5 minutes
-  );
+  // useQuery hook to fetch data with advanced options
+  const {
+    data,
+    error,
+    isLoading,
+    isFetching,
+    refetch,
+    isPreviousData,
+  } = useQuery("posts", fetchPosts, {
+    // Cache data for 10 minutes, data becomes stale after 5 minutes
+    cacheTime: 600000, // 10 minutes
+    staleTime: 300000, // 5 minutes
+    
+    // Refetch data when the window is refocused (when the user returns to the tab)
+    refetchOnWindowFocus: true,
 
-  if (isLoading) return <div>Loading...</div>;
+    // Retain previous data while refetching
+    keepPreviousData: true,
+    
+    // If data is not fetched yet, it will be considered in the "fetching" state
+    refetchOnReconnect: true, // Refetch on reconnect if the internet is re-established
+  });
 
-  if (isError) return <div>Error: {error.message}</div>;
+  // Render Loading, Error, and Data
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
 
   return (
     <div>
       <h1>Posts</h1>
-      {isFetching && <div>Refreshing...</div>}
-      <button onClick={() => refetch()}>Refetch Posts</button>
+      <button onClick={() => refetch()} disabled={isFetching}>
+        {isFetching ? "Refetching..." : "Refetch Posts"}
+      </button>
       <ul>
         {data.map((post) => (
           <li key={post.id}>
@@ -34,6 +57,9 @@ const PostsComponent = () => {
           </li>
         ))}
       </ul>
+
+      {/* Display a message if previous data is being shown while fetching */}
+      {isPreviousData && <p>Showing previous data...</p>}
     </div>
   );
 };
