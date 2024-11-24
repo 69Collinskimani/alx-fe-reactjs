@@ -1,8 +1,8 @@
 const fs = require('fs');
 
 const filesToCheck = [
-  './src/components/RecipeList.js',
-  './src/components/AddRecipeForm.js',
+  'C:/Users/69Collinskimani/recipe-sharing-app/src/components/RecipeList.js',
+  'C:/Users/69Collinskimani/recipe-sharing-app/src/components/AddRecipeForm.js',
 ];
 
 
