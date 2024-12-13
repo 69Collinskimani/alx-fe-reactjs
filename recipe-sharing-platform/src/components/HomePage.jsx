@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import AddRecipeForm from './components/AddRecipeForm';
 
 const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -37,13 +36,7 @@ const HomePage = () => {
           </div>
         ))}
       </div>
-      <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/recipe/:id" element={<RecipeDetail />} />
-        <Route path="/add-recipe" element={<AddRecipeForm />} />
-      </Routes>
-    </Router>
+      
 
     </div>
   );
