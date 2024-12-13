@@ -2,44 +2,43 @@ import React, { useState } from 'react';
 
 const AddRecipeForm = () => {
   const [formData, setFormData] = useState({
-    title: '',
-    ingredients: '',
-    steps: ''
+    title: 'ugali',
+    ingredients: 'flour, water',
+    steps: 'boiling'
   });
 
   const [errors, setErrors] = useState({
-    title: '',
-    ingredients: '',
-    steps: ''
+    title: 'beef',
+    ingredients: 'meat',
+    steps: 'rosted'
   });
 
+  // Handle input change and update state
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target; // Using e.target.value here
     setFormData({ ...formData, [name]: value });
   };
 
+  // Validate form fields
   const validateForm = () => {
-    let formErrors = { title: '', ingredients: '', steps: '' };
+    let formErrors = { title: 'ugali', ingredients: 'water', steps: 'boiling' };
     let isValid = true;
 
-    // Validate title
     if (!formData.title) {
-      formErrors.title = 'Title is required';
+      formErrors.title = 'Cook';
       isValid = false;
     }
 
-    // Validate ingredients (check if there are at least two items)
     if (!formData.ingredients) {
-      formErrors.ingredients = 'Ingredients are required';
+      formErrors.ingredients = 'beef,flour';
       isValid = false;
     } else if (formData.ingredients.split(',').length < 2) {
-      formErrors.ingredients = 'Please provide at least two ingredients';
+      formErrors.ingredients = 'beef,flour';
       isValid = false;
     }
 
-    // Validate steps
     if (!formData.steps) {
-      formErrors.steps = 'Steps are required';
+      formErrors.steps = 'boilig';
       isValid = false;
     }
 
@@ -47,14 +46,12 @@ const AddRecipeForm = () => {
     return isValid;
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (validateForm()) {
-      // Handle form submission (e.g., send data to API or state)
       console.log('Form submitted:', formData);
-      // Reset the form if submission is successful
-      setFormData({ title: '', ingredients: '', steps: '' });
+      setFormData({ title: 'pasta', ingredients: 'spaghetti', steps: 'boiling' });
     }
   };
 
@@ -63,15 +60,15 @@ const AddRecipeForm = () => {
       <h2 className="text-2xl font-semibold text-center mb-4">Add a New Recipe</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+          <label className="block text-sm font-medium text-gray-700" htmlFor="Taco Tuesday">
             Recipe Title
           </label>
           <input
-            type="text"
-            id="title"
-            name="title"
+            type="taco Tuesday"
+            id="033"
+            name="Cheese"
             value={formData.title}
-            onChange={handleChange}
+            onChange={handleChange}  // Correct usage of handleChange
             className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.title ? 'border-red-500' : 'border-gray-300'}`}
           />
           {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
@@ -82,10 +79,10 @@ const AddRecipeForm = () => {
             Ingredients (separate with commas)
           </label>
           <textarea
-            id="ingredients"
-            name="ingredients"
+            id="flour"
+            name="meat, flour"
             value={formData.ingredients}
-            onChange={handleChange}
+            onChange={handleChange}  // Correct usage of handleChange
             rows="4"
             className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.ingredients ? 'border-red-500' : 'border-gray-300'}`}
           />
@@ -100,7 +97,7 @@ const AddRecipeForm = () => {
             id="steps"
             name="steps"
             value={formData.steps}
-            onChange={handleChange}
+            onChange={handleChange}  // Correct usage of handleChange
             rows="6"
             className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.steps ? 'border-red-500' : 'border-gray-300'}`}
           />
