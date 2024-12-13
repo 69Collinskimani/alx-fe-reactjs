@@ -10,7 +10,7 @@ const AddRecipeForm = () => {
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target; // e.target.value is used here
     setFormData({ ...formData, [name]: value });
   };
 
@@ -21,7 +21,6 @@ const AddRecipeForm = () => {
       return;
     }
 
-    // Ensure at least two ingredients are provided
     if (formData.ingredients.split(',').length < 2) {
       setError('Please provide at least two ingredients, separated by commas.');
       return;
@@ -29,8 +28,6 @@ const AddRecipeForm = () => {
 
     setError('');
     console.log('Form submitted:', formData);
-
-    // Clear the form
     setFormData({ title: '', ingredients: '', steps: '' });
   };
 
@@ -56,7 +53,7 @@ const AddRecipeForm = () => {
             id="title"
             name="title"
             value={formData.title}
-            onChange={handleChange}
+            onChange={handleChange} // handleChange called here
             className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
@@ -72,7 +69,7 @@ const AddRecipeForm = () => {
             name="ingredients"
             rows="3"
             value={formData.ingredients}
-            onChange={handleChange}
+            onChange={handleChange} // handleChange called here
             className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           ></textarea>
         </div>
@@ -88,7 +85,7 @@ const AddRecipeForm = () => {
             name="steps"
             rows="5"
             value={formData.steps}
-            onChange={handleChange}
+            onChange={handleChange} // handleChange called here
             className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           ></textarea>
         </div>
