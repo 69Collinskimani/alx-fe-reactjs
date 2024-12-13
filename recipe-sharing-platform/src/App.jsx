@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg';
 import './App.css';
 import RegistrationForm from './components/RegistrationForm';
 import FormikForm from './components/FormikForm';
+import HomePage from './components/HomePage';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -52,6 +53,10 @@ function App() {
         <p className="read-the-docs mt-4">
           Click on the Vite and React logos to learn more.
         </p>
+
+        <div>
+      <HomePage />
+    </div>
       </section>
     </div>
   );
